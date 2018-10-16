@@ -2,10 +2,21 @@
   "name": "simple-game-engine",
   "version": "0.0.1",
   "description": "Let's program our own game engine from scratch!",
+  "main": "server.js",
+  "scripts": {
+    "server": "node server.js",
+    "server:watch": "nodemon -e html,js,css,json server.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bridgs/simple-game-engine.git"
   },
   "author": "bridgs",
-  "homepage": "https://github.com/bridgs/simple-game-engine#readme"
+  "homepage": "https://github.com/bridgs/simple-game-engine#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
