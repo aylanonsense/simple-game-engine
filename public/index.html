@@ -4,13 +4,36 @@
 		<script>
 			const FPS = 30
 
-			function init () {}
+			// Create a JSON object to represent the game's state
+			function init () {
+				return {
+					playerX: 2,
+					playerY: 10
+				}
+			}
 
-			function update (state) {}
+			// Advance the state forward one frame
+			function update (state) {
+				// Move the player to the right
+				state.playerX += 1
+			}
 
-			function draw (state) {}
+			// Render the state however we'd like
+			function draw (state, canvas) {
+				let s = '';
+				for (let y = 0; y < 30; y++) {
+					for (let x = 0; x < 50; x++) {
+						s += (x === state.playerX && y === state.playerY ? 'O' : '.')
+					}
+					s += '\n'
+				}
+				// Our canvas is actually just a <pre> tag
+				canvas.innerHTML = s
+			}
 
 			function main () {
+				const canvas = document.getElementById('fake-canvas')
+
 				// Create the starting state of the game
 				let state = init()
 
@@ -20,11 +43,12 @@
 					update(state)
 
 					// Draw the game's current state
-					draw(state)
+					draw(state, canvas)
 				}, Math.floor(1000 / FPS))
 			}
 		</script>
 	</head>
 	<body onload="main()">
+		<pre id="fake-canvas"></pre>
 	</body>
 </html>
