@@ -4,10 +4,23 @@
 		<script>
 			const FPS = 30
 
+			function init () {}
+
+			function update (state) {}
+
+			function draw (state) {}
+
 			function main () {
+				// Create the starting state of the game
+				let state = init()
+
 				// Kick off the game loop
 				setInterval(() => {
-					// TODO anything written in here will happen 30 times per second!
+					// Update the game's state by one frame
+					update(state)
+
+					// Draw the game's current state
+					draw(state)
 				}, Math.floor(1000 / FPS))
 			}
 		</script>
