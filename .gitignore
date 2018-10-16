@@ -59,3 +59,9 @@ typings/
 
 # next.js build output
 .next
+
+# Silly mac files
+.DS_Store
+
+# Files that complicate the commit history even though they are good
+package-lock.json

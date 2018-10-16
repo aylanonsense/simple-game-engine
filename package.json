@@ -1,0 +1,11 @@
+{
+  "name": "simple-game-engine",
+  "version": "0.0.1",
+  "description": "Let's program our own game engine from scratch!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bridgs/simple-game-engine.git"
+  },
+  "author": "bridgs",
+  "homepage": "https://github.com/bridgs/simple-game-engine#readme"
+}
