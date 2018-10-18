@@ -45,17 +45,15 @@
 			}
 
 			// Render the state however we'd like
-			function draw (state, ctx) {
+			function draw (state, ctx, sprites) {
 				// Clear the canvas
 				ctx.fillStyle = '#000'
 				ctx.fillRect(0, 0, canvas.width, canvas.height)
 				// Draw the player
-				ctx.fillStyle = '#f00'
-				ctx.fillRect(state.player.x, state.player.y, state.player.width, state.player.height)
+				ctx.drawImage(sprites, 1, 1, 5, 6, state.player.x, state.player.y, 5, 6)
 				// Draw the coin
 				if (!state.coin.collected) {
-					ctx.fillStyle = '#ff0'
-					ctx.fillRect(state.coin.x, state.coin.y, state.coin.width, state.coin.height)
+					ctx.drawImage(sprites, 8, 2, 3, 4, state.coin.x, state.coin.y, 3, 4)
 				}
 			}
 
@@ -68,6 +66,10 @@
 			function main () {
 				const canvas = document.getElementById('canvas')
 				const ctx = canvas.getContext('2d')
+
+				// Load the sprite sheet
+				const sprites = new Image()
+				sprites.src = '/sprite-sheet.png'
 
 				// Keep track of inputs
 				const keys = {}
@@ -83,7 +85,7 @@
 					update(state, keys)
 
 					// Draw the game's current state
-					draw(state, ctx)
+					draw(state, ctx, sprites)
 				}, Math.floor(1000 / FPS))
 			}
 		</script>
