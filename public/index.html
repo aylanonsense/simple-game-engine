@@ -13,9 +13,20 @@
 			}
 
 			// Advance the state forward one frame
-			function update (state) {
-				// Move the player to the right
-				state.playerX += 1
+			function update (state, keys) {
+				// Move the player based on keyboard input
+				if (keys.W) {
+					state.playerY -= 1
+				}
+				if (keys.A) {
+					state.playerX -= 1
+				}
+				if (keys.S) {
+					state.playerY += 1
+				}
+				if (keys.D) {
+					state.playerX += 1
+				}
 			}
 
 			// Render the state however we'd like
@@ -32,13 +43,18 @@
 				const canvas = document.getElementById('canvas')
 				const ctx = canvas.getContext('2d')
 
+				// Keep track of inputs
+				const keys = {}
+				document.addEventListener('keyup', evt => keys[evt.key.toUpperCase()] = false)
+				document.addEventListener('keydown', evt => keys[evt.key.toUpperCase()] = true)
+
 				// Create the starting state of the game
 				let state = init()
 
 				// Kick off the game loop
 				setInterval(() => {
 					// Update the game's state by one frame
-					update(state)
+					update(state, keys)
 
 					// Draw the game's current state
 					draw(state, ctx)
