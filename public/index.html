@@ -19,20 +19,18 @@
 			}
 
 			// Render the state however we'd like
-			function draw (state, canvas) {
-				let s = '';
-				for (let y = 0; y < 30; y++) {
-					for (let x = 0; x < 50; x++) {
-						s += (x === state.playerX && y === state.playerY ? 'O' : '.')
-					}
-					s += '\n'
-				}
-				// Our canvas is actually just a <pre> tag
-				canvas.innerHTML = s
+			function draw (state, ctx) {
+				// Clear the canvas
+				ctx.fillStyle = '#000'
+				ctx.fillRect(0, 0, canvas.width, canvas.height)
+				// Draw the player
+				ctx.fillStyle = '#f00'
+				ctx.fillRect(state.playerX, state.playerY, 1, 1)
 			}
 
 			function main () {
-				const canvas = document.getElementById('fake-canvas')
+				const canvas = document.getElementById('canvas')
+				const ctx = canvas.getContext('2d')
 
 				// Create the starting state of the game
 				let state = init()
@@ -43,12 +41,19 @@
 					update(state)
 
 					// Draw the game's current state
-					draw(state, canvas)
+					draw(state, ctx)
 				}, Math.floor(1000 / FPS))
 			}
 		</script>
+		<style>
+			#canvas {
+				width: 500px;
+				height: 500px;
+				image-rendering: pixelated;
+			}
+		</style>
 	</head>
 	<body onload="main()">
-		<pre id="fake-canvas"></pre>
+		<canvas id="canvas" width="30" height="30"></canvas>
 	</body>
 </html>
