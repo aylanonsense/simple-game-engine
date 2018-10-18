@@ -17,7 +17,8 @@
 						x: 10,
 						y: 20,
 						width: 3,
-						height: 3
+						height: 3,
+						collected: false
 					}
 				}
 			}
@@ -37,6 +38,10 @@
 				if (keys.D) {
 					state.player.x += 1
 				}
+				// Check to see if the player has collected the coin
+				if (!state.coin.collected && isOverlapping(state.player, state.coin)) {
+					state.coin.collected = true
+				}
 			}
 
 			// Render the state however we'd like
@@ -48,8 +53,16 @@
 				ctx.fillStyle = '#f00'
 				ctx.fillRect(state.player.x, state.player.y, state.player.width, state.player.height)
 				// Draw the coin
-				ctx.fillStyle = '#ff0'
-				ctx.fillRect(state.coin.x, state.coin.y, state.coin.width, state.coin.height)
+				if (!state.coin.collected) {
+					ctx.fillStyle = '#ff0'
+					ctx.fillRect(state.coin.x, state.coin.y, state.coin.width, state.coin.height)
+				}
+			}
+
+			// Returns true if two objects are overlapping
+			function isOverlapping (a, b) {
+				return a.x < b.x + b.width && b.x < a.x + a.width &&
+					a.y < b.y + b.height && b.y < a.y + a.height
 			}
 
 			function main () {
