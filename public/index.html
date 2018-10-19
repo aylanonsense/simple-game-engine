@@ -41,6 +41,9 @@
 				// Check to see if the player has collected the coin
 				if (!state.coin.collected && isOverlapping(state.player, state.coin)) {
 					state.coin.collected = true
+					// Play a "ding" sound
+					const sound = new Audio('ding.m4a')
+					sound.play()
 				}
 			}
 
